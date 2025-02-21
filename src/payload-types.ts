@@ -460,6 +460,8 @@ export interface CallToActionBlock {
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
+  title?: string | null;
+  anchor?: string | null;
   columns?:
     | {
         size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
@@ -498,12 +500,24 @@ export interface ContentBlock {
            */
           appearance?: ('default' | 'outline') | null;
         };
+        blocks?: SkillsBlock[] | null;
         id?: string | null;
       }[]
     | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SkillsBlock".
+ */
+export interface SkillsBlock {
+  name: string;
+  value: number;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'skills';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1084,6 +1098,8 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
  * via the `definition` "ContentBlock_select".
  */
 export interface ContentBlockSelect<T extends boolean = true> {
+  title?: T;
+  anchor?: T;
   columns?:
     | T
     | {
@@ -1100,8 +1116,23 @@ export interface ContentBlockSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
             };
+        blocks?:
+          | T
+          | {
+              skills?: T | SkillsBlockSelect<T>;
+            };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SkillsBlock_select".
+ */
+export interface SkillsBlockSelect<T extends boolean = true> {
+  name?: T;
+  value?: T;
   id?: T;
   blockName?: T;
 }

@@ -8,6 +8,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 
 import { link } from '@/fields/link'
+import { Skills } from '../Skills/config'
 
 const columnFields: Field[] = [
   {
@@ -59,12 +60,29 @@ const columnFields: Field[] = [
       },
     },
   }),
+  {
+    name: 'blocks',
+    type: 'blocks',
+    blocks: [Skills],
+    required: false,
+    admin: {
+      initCollapsed: true,
+    },
+  },
 ]
 
 export const Content: Block = {
   slug: 'content',
   interfaceName: 'ContentBlock',
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+    },
+    {
+      name: 'anchor',
+      type: 'text',
+    },
     {
       name: 'columns',
       type: 'array',
