@@ -42,7 +42,13 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                   blocks.length > 0 &&
                   blocks.map((block) => {
                     if (block.blockType === 'skills') {
-                      return <Skills name={block.name} value={block.value} />
+                      return (
+                        <Skills
+                          key={block.id ?? `skills_${block.name.toLowerCase()}`}
+                          name={block.name}
+                          value={block.value}
+                        />
+                      )
                     }
 
                     return null
