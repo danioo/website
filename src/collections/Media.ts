@@ -24,6 +24,10 @@ export const Media: CollectionConfig = {
   },
   fields: [
     {
+      name: 'title',
+      type: 'text',
+    },
+    {
       name: 'alt',
       type: 'text',
       //required: true,

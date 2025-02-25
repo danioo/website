@@ -10,6 +10,7 @@ import type { Props as MediaProps } from '../types'
 
 import { cssVariables } from '@/cssVariables'
 import { getClientSideURL } from '@/utilities/getURL'
+import RichText from '@/components/RichText'
 
 const { breakpoints } = cssVariables
 
@@ -56,7 +57,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .join(', ')
 
   return (
-    <picture>
+    <figure className="relative">
       <NextImage
         alt={alt || ''}
         className={cn(imgClassName)}
@@ -71,6 +72,14 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         src={src}
         width={!fill ? width : undefined}
       />
-    </picture>
+
+      {resource && typeof resource === 'object' && resource?.caption && (
+        <figcaption className="absolute px-4 py-3 text-lg text-white bottom-6 bg-gray-800 opacity-70 w-full">
+          <h3 className="text-lg font-bold py-2">{resource.title}</h3>
+
+          <RichText data={resource.caption} className="p-0 text-sm text-gray-200" />
+        </figcaption>
+      )}
+    </figure>
   )
 }

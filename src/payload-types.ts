@@ -205,7 +205,7 @@ export interface Page {
     media?: (number | null) | Media;
     avatar?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | MediaGrid | ArchiveBlock | FormBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -274,6 +274,7 @@ export interface Post {
  */
 export interface Media {
   id: number;
+  title?: string | null;
   alt?: string | null;
   caption?: {
     root: {
@@ -528,6 +529,21 @@ export interface MediaBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaGrid".
+ */
+export interface MediaGrid {
+  title?: string | null;
+  anchor?: string | null;
+  medias: {
+    media: number | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaGrid';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1052,6 +1068,7 @@ export interface PagesSelect<T extends boolean = true> {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
+        mediaGrid?: T | MediaGridSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
       };
@@ -1147,6 +1164,22 @@ export interface MediaBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaGrid_select".
+ */
+export interface MediaGridSelect<T extends boolean = true> {
+  title?: T;
+  anchor?: T;
+  medias?:
+    | T
+    | {
+        media?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ArchiveBlock_select".
  */
 export interface ArchiveBlockSelect<T extends boolean = true> {
@@ -1206,6 +1239,7 @@ export interface PostsSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
+  title?: T;
   alt?: T;
   caption?: T;
   _key?: T;
