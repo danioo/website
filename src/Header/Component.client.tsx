@@ -33,6 +33,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     <header
       className="container w-screen max-w-full m-0 fixed z-30   "
       {...(theme ? { 'data-theme': theme } : {})}
+      data-scrollspy="#scrollspy-1"
     >
       <div className="py-8 flex justify-end">
         <HeaderNav data={data} />

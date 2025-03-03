@@ -58,15 +58,17 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
 
   return (
-    <article className="pt-16 pb-24">
-      <PageClient />
-      {/* Allows redirects for valid pages too */}
-      <PayloadRedirects disableNotFound url={url} />
+    <article className="pt-16 pb-24" id="scrollspy-scrollable-parent-1">
+      <div id="scrollspy-1">
+        <PageClient />
+        {/* Allows redirects for valid pages too */}
+        <PayloadRedirects disableNotFound url={url} />
 
-      {draft && <LivePreviewListener />}
+        {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+        <RenderHero {...hero} />
+        <RenderBlocks blocks={layout} />
+      </div>
     </article>
   )
 }
