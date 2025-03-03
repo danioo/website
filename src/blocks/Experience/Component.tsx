@@ -27,7 +27,7 @@ export const ExperienceBlock: React.FC<ExperienceBlockProps> = (props) => {
               >
                 <div className="timeline-middle h-16">
                   <span className="bg-info/20 flex size-8 items-center justify-center rounded-full">
-                    <span className="icon-[tabler--tooltip] text-info size-5"></span>
+                    <span className="icon-[tabler--tooltip] text-info size-5" />
                   </span>
                 </div>
                 <div

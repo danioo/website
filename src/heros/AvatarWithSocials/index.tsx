@@ -4,9 +4,6 @@ import React, { useEffect } from 'react'
 
 import type { Page } from '@/payload-types'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight, faExternalLink, IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import { faLinkedin, faFacebookSquare, faInstagramSquare } from '@fortawesome/free-brands-svg-icons'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import Link from 'next/link'
@@ -19,10 +16,10 @@ export const AvatarWithSocialsHero: React.FC<Page['hero']> = ({
   connect,
 }) => {
   const { setHeaderTheme } = useHeaderTheme()
-  const iconsMap: Map<string, IconDefinition> = new Map<string, IconDefinition>([
-    ['LinkedIn', faLinkedin],
-    ['Facebook', faFacebookSquare],
-    ['Instagram', faInstagramSquare],
+  const iconsMap: Map<string, string> = new Map<string, string>([
+    ['LinkedIn', 'tabler--brand-linkedin'],
+    ['Facebook', 'tabler--brand-facebook'],
+    ['Instagram', 'tabler--brand-instagram'],
   ])
 
   useEffect(() => {
@@ -30,20 +27,21 @@ export const AvatarWithSocialsHero: React.FC<Page['hero']> = ({
   })
 
   return (
-    <div
-      className="relative -mt-[10.4rem] flex items-center justify-center text-white"
-      data-theme="dark"
-    >
+    <div className="relative flex items-center justify-center text-white" data-theme="dark">
       <div className="absolute inset-0 z-10 bg-cover bg-center bg-no-repeat bg-lime-600 bg-opacity-85" />
       <div className="container mb-8 z-20 relative flex items-center justify-center">
         <div className="md:text-center">
           <div className="flex flex-col items-center justify-center lg:flex-row">
             <div className="rounded-full border-8 border-lime-400 shadow-xl">
-              <Media
-                alt="avatar"
-                resource={avatar && typeof avatar === 'object' ? avatar : undefined}
-                imgClassName="rounded-full"
-              />
+              <div className="avatar">
+                <div className="size-64 rounded-full">
+                  <Media
+                    alt="avatar"
+                    resource={avatar && typeof avatar === 'object' ? avatar : undefined}
+                    imgClassName="inline size-64 rounded-full"
+                  />
+                </div>
+              </div>
             </div>
             <div className="pt-8 sm:pt-10 lg:pl-8 lg:pt-0">
               {richText && (
@@ -61,27 +59,21 @@ export const AvatarWithSocialsHero: React.FC<Page['hero']> = ({
                       className="font-body text-lg pr-2 uppercase text-white"
                     />
 
-                    <span className="text-lime-300">
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </span>
-                  </div>
-                )}
-                <div className="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0">
-                  {Array.isArray(links) && links.length > 0 && (
-                    <ul className="flex md:justify-center gap-4">
-                      {links.map(({ link }, i) => {
+                    <span className={`icon-[tabler--chevron-right] size-10 text-lime-400`} />
+
+                    {Array.isArray(links) &&
+                      links.length > 0 &&
+                      links.map(({ link }, i) => {
                         return (
                           <Link href={link?.url ?? '#'} key={`link_${i}`}>
-                            <FontAwesomeIcon
-                              icon={iconsMap.get(link.label) ?? faExternalLink}
-                              size="lg"
+                            <span
+                              className={`icon-[${iconsMap.get(link.label) ?? 'tabler--external-link'}] hover:text-secondary size-7 inline-block align-middle`}
                             />
                           </Link>
                         )
                       })}
-                    </ul>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
