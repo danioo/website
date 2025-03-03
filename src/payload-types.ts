@@ -205,7 +205,7 @@ export interface Page {
     media?: (number | null) | Media;
     avatar?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | MediaGrid | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | MediaGrid | ArchiveBlock | FormBlock | ExperienceBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -780,6 +780,40 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExperienceBlock".
+ */
+export interface ExperienceBlock {
+  title?: string | null;
+  anchor?: string | null;
+  experienceEntries?:
+    | {
+        title: string;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        startDate: string;
+        endDate?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'experienceBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1071,6 +1105,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaGrid?: T | MediaGridSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        experienceBlock?: T | ExperienceBlockSelect<T>;
       };
   meta?:
     | T
@@ -1200,6 +1235,25 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExperienceBlock_select".
+ */
+export interface ExperienceBlockSelect<T extends boolean = true> {
+  title?: T;
+  anchor?: T;
+  experienceEntries?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        startDate?: T;
+        endDate?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

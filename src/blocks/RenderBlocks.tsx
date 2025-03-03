@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { MediaGrid } from '@/blocks/MediaGrid/Component'
+import { ExperienceBlock } from '@/blocks/Experience/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,6 +17,7 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   mediaGrid: MediaGrid,
+  experienceBlock: ExperienceBlock,
 }
 
 export const RenderBlocks: React.FC<{

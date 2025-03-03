@@ -28,8 +28,6 @@ type Props = MediaBlockProps & {
 export const MediaGrid: React.FC<Props> = (props) => {
   const { title, anchor, medias } = props
 
-  console.log(props)
-
   return (
     <div className="container my-16">
       <h1 className="text-2xl" id={anchor ?? `heading_${title?.toLowerCase()}`}>

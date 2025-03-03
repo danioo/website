@@ -21,6 +21,7 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { MediaGrid } from '@/blocks/MediaGrid/config'
+import { Experience } from '@/blocks/Experience/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -76,7 +77,15 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, MediaGrid, Archive, FormBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                MediaGrid,
+                Archive,
+                FormBlock,
+                Experience,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

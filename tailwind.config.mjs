@@ -8,9 +8,10 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './node_modules/flyonui/dist/js/*.js',
   ],
   darkMode: ['selector', '[data-theme="dark"]'],
-  plugins: [tailwindcssAnimate, typography],
+  plugins: [tailwindcssAnimate, typography, require('flyonui'), require('flyonui/plugin')],
   prefix: '',
   safelist: [
     'lg:col-span-4',
